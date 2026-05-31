@@ -46,12 +46,12 @@ int Train::getLength() {
         return 0;
     Car* cur = first;
     int len = 1;
-    cur = cur->next;
-    countOp += 2;
-    while (cur != first) {
-        len++;
+    while (true) {
         cur = cur->next;
-        countOp += 2;
+        countOp++;
+        if (cur == first)
+            break;
+        len++;
     }
     return len;
 }
