@@ -43,7 +43,7 @@ int Train::getOpCount() {
 int Train::getLength() {
     resetCounter();
     if (first == nullptr) return 0;
-    first->light = true; 
+    first->light = true;
     Car* cur = first;
     int steps_forward = 0;
     while (true) {
