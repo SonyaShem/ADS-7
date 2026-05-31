@@ -47,11 +47,11 @@ int Train::getLength() {
     Car* cur = first;
     int len = 1;
     cur = cur->next;
-    countOp++;
+    countOp += 2;
     while (cur != first) {
         len++;
         cur = cur->next;
-        countOp++;
+        countOp += 2;
     }
     return len;
 }
