@@ -42,18 +42,29 @@ int Train::getOpCount() {
 
 int Train::getLength() {
     resetCounter();
-
-    if (first == nullptr)
-        return 0;
-
+    if (first == nullptr) return 0;
+    first->light = true; 
     Car* cur = first;
-    int len = 1;
-
-    while (cur->next != first) {
+    int steps_forward = 0;
+    while (true) {
         cur = cur->next;
         countOp++;
-        len++;
+        steps_forward++;
+        if (cur->light == true) {
+            cur->light = false;
+            Car* temp = cur;
+            for (int i = 0; i < steps_forward; i++) {
+                temp = temp->prev;
+                countOp++;
+            }
+            if (temp->light == false) {
+                return steps_forward;
+            }
+            for (int i = 0; i < steps_forward; i++) {
+                temp = temp->next;
+                countOp++;
+            }
+            cur->light = true;
+        }
     }
-
-    return len;
 }
